@@ -1,0 +1,61 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: aicoder-gateway
+  codec:
+    max-in-memory-size: 10MB
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${REDIS_PASSWORD:}
+  cloud:
+    nacos:
+      discovery:
+        server-addr: localhost:8848
+    gateway:
+      routes:
+        - id: admin-service
+          uri: lb://aicoder-admin
+          predicates:
+            - Path=/api/admin/**
+        - id: chat-service
+          uri: lb://aicoder-chat
+          predicates:
+            - Path=/api/chat/**
+        - id: rag-service
+          uri: lb://aicoder-rag
+          predicates:
+            - Path=/api/rag/**
+        - id: workflow
+          uri: lb://aicoder-workflow
+          predicates:
+            - Path=/api/workflow/**
+        - id: system-service
+          uri: lb://aicoder-system
+          predicates:
+            - Path=/api/system/**
+        - id: skill-service
+          uri: lb://aicoder-skill
+          predicates:
+            - Path=/api/skill/**
+        - id: mcp-service
+          uri: lb://aicoder-mcp
+          predicates:
+            - Path=/api/mcp/**
+      globalcors:
+        cors-configurations:
+          '[/**]':
+            allowedOriginPatterns: "*"
+            allowed-methods: "*"
+            allowed-headers: "*"
+            allow-credentials: true
+
+jwt:
+  secret: aicoder-jwt-secret-key-2024-must-be-at-least-256-bits-long
+
+logging:
+  level:
+    org.springframework.cloud.gateway: INFO

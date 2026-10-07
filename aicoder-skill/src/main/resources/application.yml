@@ -1,0 +1,49 @@
+server:
+  port: 8086
+
+spring:
+  application:
+    name: aicoder-skill
+  config:
+    import:
+      # Nacos 共享配置：未来 chat 引入同一 data-id 即读到同一 skill.directory。
+      # optional: 前缀保证 Nacos 不可用时服务仍可启动（退回本地默认）。
+      - optional:nacos:aicoder-shared.yml
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/test_ai?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: ${REDIS_PASSWORD:}
+  ai:
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY:}
+      chat:
+        options:
+          model: deepseek-v4-flash
+
+# 技能物化共享目录：本地兜底默认值，可被 Nacos aicoder-shared.yml 或 SKILL_DIRECTORY 环境变量覆盖。
+# 推荐在 Nacos 中配置为所有运行面共用的绝对路径。
+skill:
+  directory: ${SKILL_DIRECTORY:./skills}
+  generate-model: deepseek-v4-flash
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

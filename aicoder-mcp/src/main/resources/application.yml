@@ -1,0 +1,53 @@
+server:
+  port: 8087
+
+spring:
+  application:
+    name: aicoder-mcp
+  config:
+    import:
+      - optional:nacos:aicoder-shared.yml
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/test_ai?characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false}
+    username: ${MYSQL_USERNAME:root}
+    password: ${MYSQL_PASSWORD:root}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQLDialect
+  ai:
+    deepseek:
+      api-key: ${DEEPSEEK_API_KEY:placeholder}
+    mcp:
+      server:
+        name: aicoder-mcp
+        version: 1.0.0
+        type: SYNC
+
+mcp:
+  access-token: ${MCP_ACCESS_TOKEN:dev-mcp-token-change-me}
+  service-user-id: ${MCP_SERVICE_USER_ID:1}
+  search:
+    provider: tavily
+    api-key: ${MCP_SEARCH_API_KEY:}
+    max-results: 5
+  fetch:
+    connect-timeout: 5000
+    read-timeout: 15000
+    max-length: 20000
+    allow-private-ip: false
+  image:
+    model-code: ${MCP_IMAGE_MODEL_CODE:qwen2.5vl:7b}
+
+springdoc:
+  api-docs:
+    path: /v3/api-docs
+  swagger-ui:
+    path: /swagger-ui.html

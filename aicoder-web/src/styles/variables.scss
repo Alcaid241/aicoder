@@ -1,0 +1,36 @@
+// Mirrors the default "Obsidian" theme CSS custom properties
+// Prefer using var(--...) in styles; use these only when SCSS functions need them
+
+$accent:              #d4a040;
+$accent-light:        #e8c060;
+$accent-dark:         #b08030;
+$accent-glow:         rgba(212, 160, 64, 0.20);
+
+$bg-root:             #0e0e10;
+$bg-surface:          #18181b;
+$bg-elevated:         #212124;
+$bg-overlay:          #28282c;
+$bg-hover:            #2a2a30;
+
+$text-primary:        #e8e4dc;
+$text-secondary:      #a09b92;
+$text-muted:          #6b6560;
+$text-inverse:        #18181b;
+
+$border-subtle:       #26262a;
+$border-default:      #333338;
+$border-strong:       #44444a;
+
+$success:             #4a9e6e;
+$warning:             #c4913a;
+$danger:              #c4564a;
+$info:                #5a8eb0;
+
+$sidebar-bg:          #111113;
+$topbar-bg:           rgba(14, 14, 16, 0.85);
+
+$code-bg:             #1e1e22;
+
+$font-display: 'Sora', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+$font-body:    'Sora', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+$font-mono:    'JetBrains Mono', 'Menlo', 'Monaco', 'Courier New', monospace;

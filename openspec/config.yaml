@@ -1,0 +1,9 @@
+schema: spec-driven
+
+context: |
+  Tech stack: Java 17, Spring Boot 3.5.13, Spring Cloud 2025.0.0, Spring AI 1.1.2
+  Architecture: Maven multi-module Spring Cloud Gateway + Nacos microservices
+  Database: MySQL 8.0 + JPA/Hibernate (ddl-auto: update, no Flyway)
+  Frontend: Vue 3 + Vite + Pinia
+  Testing: JUnit 5 + Mockito (unit tests, no Spring context)
+  Conventions: Chinese documentation, kebab-case file names, TDD preferred

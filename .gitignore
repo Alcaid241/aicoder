@@ -1,0 +1,38 @@
+# Maven
+**/target/
+
+# 前端
+aicoder-web/node_modules/
+aicoder-web/dist/
+
+# IDE
+.idea/
+*.iml
+*.iws
+*.ipr
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 日志
+*.log
+
+# 环境配置
+.env
+*.local
+
+# 运行时物化的技能目录（aicoder-skill 启动播种/审批物化写入，勿提交）
+/aicoder-skill/skills/
+# === 运行时/工具产物（勿提交）===
+# 前端 vue-tsc 增量构建缓存
+*.tsbuildinfo
+
+# 技能系统运行时产物：共享技能物化目录（chat 读、skill 写）+ 技能工具运行时
+/skills/
+/skills-lock.json
+
+# skill 工具包运行时（impeccable 等，非项目源码）
+/.agents/
+/.claude/skills/
